@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { AnimatePresence } from "motion/react";
 import { StartScreen } from "./components/StartScreen";
 import { FormScreen } from "./components/FormScreen";
 import { ResultScreen } from "./components/ResultScreen";
@@ -25,17 +24,19 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[var(--color-brand-bg)] font-sans text-gray-900 selection:bg-[var(--color-brand-green)] selection:text-white">
-      <AnimatePresence mode="wait">
-        {appState === "start" && (
-          <StartScreen key="start" onStart={handleStart} />
-        )}
-        {appState === "form" && (
-          <FormScreen key="form" onSubmit={handleFormSubmit} />
-        )}
-        {appState === "result" && userData && (
-          <ResultScreen key="result" data={userData} onReset={handleReset} />
-        )}
-      </AnimatePresence>
+      
+      {appState === "start" && (
+        <StartScreen onStart={handleStart} />
+      )}
+
+      {appState === "form" && (
+        <FormScreen onSubmit={handleFormSubmit} />
+      )}
+
+      {appState === "result" && userData && (
+        <ResultScreen data={userData} onReset={handleReset} />
+      )}
+
     </div>
   );
 }
